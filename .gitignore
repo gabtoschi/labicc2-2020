@@ -53,4 +53,6 @@ dkms.conf
 
 # Project submission files
 testcases/
+numberGen/
+results/
 *.zip
