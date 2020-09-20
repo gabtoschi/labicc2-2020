@@ -29,25 +29,27 @@ int* readGeneratedNumbers(char *filename, int* quantity) {
   return data;
 }
 
-void swap(int *a, int *b) {
-  int aux = *a;
-  *a = *b;
-  *b = aux;
-}
+void swap(int *a, int *b) {     // F
+  int aux = *a;                 // M + A
+  *a = *b;                      // 2M + A
+  *b = aux;                     // M + A
+}                               // F
 
-void reverseArray(int *array, int size) {
-  for (int i = 0; i < size / 2; i++) {
-    swap(&array[i], &array[size - 1 - i]);
+void reverseArray(int *array, int size) {       // F
+  for (int i = 0; i < size / 2; i++) {          // 2A + C [1 it], n/2 * (3A + C) [2 it+]
+    swap(&array[i], &array[size - 1 - i]);      // n/2 * (SWAP + 2M + 2A)
   }
-}
+}                                               // F
 
-void bubbleSort(int *array, int size) {
-  for (int i = 0; i < size - 1; i++) {
-    for (int j = 0; j < size - i - 1; j++) {
-      if (array[j] > array[j+1]) swap(&array[j], &array[j+1]);
+void bubbleSort(int *array, int size) {         // F
+  for (int i = 0; i < size - 1; i++) {          // 2A + C [1 it], n-1 * (2A + C) [2 it+]
+    for (int j = 0; j < size - i - 1; j++) {    // 3A + C [1 it], (n²-n)/2 * (3A + C) [2 it+]
+      if (array[j] > array[j+1]) {              // (n²-n)/2 * (2M + A + C)
+        swap(&array[j], &array[j+1]);           // (n²-n)/2 * (SWAP + 2M + A)
+      }
     }
   }
-}
+}                                               // F
 
 double executeAndMeasure(void (*function)(int *, int), int* source, int* data, int size) {
   COPY_INT_ARRAY(data, source, size);
