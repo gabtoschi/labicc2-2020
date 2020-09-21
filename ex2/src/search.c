@@ -1,3 +1,5 @@
+// Gabriel Toschi de Oliveira - 9763039
+
 #include <search.h>
 
 #define BINARY_MEDIUM_INDEX(left, right) (left + right) / 2
